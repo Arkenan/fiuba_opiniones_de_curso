@@ -13,9 +13,10 @@ class OpinionesParser:
         aprobo = self.aprobo(csv_opinion)
         interes = self.interes(csv_opinion)
         general = self.general(csv_opinion)
+        actual = self.actual(csv_opinion)
         return Opinion(
             asignatura = asignatura, curso = curso, aprobo = aprobo,
-            interes = interes, general = general)
+            interes = interes, general = general, actual = actual)
 
     def get_curso(self, csv_opinion):
         # TODO check invalida.
@@ -24,6 +25,9 @@ class OpinionesParser:
 
     def aprobo(self, csv_opinion):
         return csv_opinion['¿Aprobó la Cursada?'].lower() == 'sí'
+
+    def actual(self, csv_opinion):
+        return csv_opinion['¿Los Temas de la Materia Están Actualizados?'].lower() == 'sí'
 
     def interes(self, csv_opinion):
         return Interes(csv_opinion['¿Cómo te Resultaron los Temas de la Materia?'])

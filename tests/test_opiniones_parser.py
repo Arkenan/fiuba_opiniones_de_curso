@@ -23,4 +23,8 @@ def test_interes():
 def test_opinion_general():
     opinion = OpinionesParser('tests/archivo_guion.csv').next()
     assert opinion.general.puntos == 5
-    assert opinion.general.texto == "Excelente" 
+    assert opinion.general.texto == "Excelente"
+
+def test_actual():
+    opinion = OpinionesParser('tests/archivo_guion.csv').next()
+    assert opinion.actual
