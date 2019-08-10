@@ -9,5 +9,10 @@ def test_should_fail_if_file_not_found():
 def test_materia_y_curso_separados_guion():
     parser = OpinionesParser('tests/archivo_guion.csv')
     opinion = parser.next()
-    opinion.asignatura == 'Análisis Numérico'
-    opinion.curso == 'Schwarz'
+    assert opinion.asignatura == 'Análisis Numérico'
+    assert opinion.curso == 'Schwarz'
+
+def test_aprobo():
+    parser = OpinionesParser('tests/archivo_guion.csv')
+    opinion = parser.next()
+    assert opinion.aprobo
