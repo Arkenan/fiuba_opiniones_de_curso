@@ -6,25 +6,25 @@ from app.nivel_clases import NivelClases
 from app.dificultad import Dificultad
 
 class OpinionesParser:
+    TEXTO = 'Comentarios Sobre el Curso'
+
     def __init__(self, nombre_archivo):
         self.csv = csv.DictReader(open(nombre_archivo), delimiter = ',')
 
     def next(self):
         csv_opinion = next(self.csv)
         asignatura, curso = self.get_curso(csv_opinion)
-        aprobo = self.aprobo(csv_opinion)
-        interes = self.interes(csv_opinion)
-        general = self.general(csv_opinion)
-        actual = self.actual(csv_opinion)
-        nivel_teoricas = self.nivel_teoricas(csv_opinion)
-        nivel_practicas = self.nivel_practicas(csv_opinion)
-        dificultad_curso = self.dificultad_curso(csv_opinion)
-        dificultad_tp = self.dificultad_tp(csv_opinion)
         return Opinion(
-            asignatura = asignatura, curso = curso, aprobo = aprobo,
-            interes = interes, general = general, actual = actual,
-            nivel_teoricas = nivel_teoricas, nivel_practicas = nivel_practicas,
-            dificultad_curso = dificultad_curso, dificultad_tp = dificultad_tp)
+            asignatura = asignatura, curso = curso,
+            aprobo = self.aprobo(csv_opinion),
+            interes = self.interes(csv_opinion),
+            general = self.general(csv_opinion),
+            actual = self.actual(csv_opinion),
+            nivel_teoricas = self.nivel_teoricas(csv_opinion),
+            nivel_practicas = self.nivel_practicas(csv_opinion),
+            dificultad_curso = self.dificultad_curso(csv_opinion),
+            dificultad_tp = self.dificultad_tp(csv_opinion),
+            texto = csv_opinion[self.TEXTO])
 
     def get_curso(self, csv_opinion):
         # TODO check invalida.

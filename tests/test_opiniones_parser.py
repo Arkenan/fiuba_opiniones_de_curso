@@ -38,3 +38,10 @@ def test_dificultad():
     opinion = OpinionesParser('tests/archivo_guion.csv').next()
     assert opinion.dificultad_curso.puntos == 4
     assert opinion.dificultad_tp.puntos == 3
+
+def test_texto():
+    parser = OpinionesParser('tests/archivo_guion.csv')
+    opinion = parser.next()
+    assert 'Creo que' in opinion.texto
+    opinion = parser.next()
+    assert opinion.texto == ''

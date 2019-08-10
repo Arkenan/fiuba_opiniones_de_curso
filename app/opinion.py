@@ -10,7 +10,8 @@ class Opinion:
                  nivel_teoricas = NivelClases('Buenas'),
                  nivel_practicas = NivelClases('Buenas'),
                  dificultad_curso = Dificultad('Normal'),
-                 dificultad_tp = Dificultad('Normal'),):
+                 dificultad_tp = Dificultad('Normal'),
+                 texto = ""):
         self.asignatura = asignatura
         self.curso = curso
         self.aprobo = aprobo
@@ -21,3 +22,4 @@ class Opinion:
         self.nivel_practicas = nivel_practicas
         self.dificultad_curso = dificultad_curso
         self.dificultad_tp = dificultad_tp
+        self.texto = texto
