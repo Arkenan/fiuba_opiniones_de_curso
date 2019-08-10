@@ -3,6 +3,7 @@ from app.opinion import Opinion
 from app.interes import Interes
 from app.general import OpinionGeneral
 from app.nivel_clases import NivelClases
+from app.dificultad import Dificultad
 
 class OpinionesParser:
     def __init__(self, nombre_archivo):
@@ -17,10 +18,13 @@ class OpinionesParser:
         actual = self.actual(csv_opinion)
         nivel_teoricas = self.nivel_teoricas(csv_opinion)
         nivel_practicas = self.nivel_practicas(csv_opinion)
+        dificultad_curso = self.dificultad_curso(csv_opinion)
+        dificultad_tp = self.dificultad_tp(csv_opinion)
         return Opinion(
             asignatura = asignatura, curso = curso, aprobo = aprobo,
             interes = interes, general = general, actual = actual,
-            nivel_teoricas = nivel_teoricas, nivel_practicas = nivel_practicas)
+            nivel_teoricas = nivel_teoricas, nivel_practicas = nivel_practicas,
+            dificultad_curso = dificultad_curso, dificultad_tp = dificultad_tp)
 
     def get_curso(self, csv_opinion):
         # TODO check invalida.
@@ -44,3 +48,9 @@ class OpinionesParser:
 
     def nivel_practicas(self, csv_opinion):
         return NivelClases(csv_opinion['Nivel de las Clases Prácticas del Curso'])
+
+    def dificultad_curso(self, csv_opinion):
+        return Dificultad(csv_opinion['Dificultad del Curso'])
+
+    def dificultad_tp(self, csv_opinion):
+        return Dificultad(csv_opinion['Dificultad del TP'])

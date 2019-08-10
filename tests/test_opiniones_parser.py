@@ -33,3 +33,8 @@ def test_nivel_clases():
     opinion = OpinionesParser('tests/archivo_guion.csv').next()
     assert opinion.nivel_teoricas.puntos == 3
     assert opinion.nivel_practicas.puntos == 5
+
+def test_dificultad():
+    opinion = OpinionesParser('tests/archivo_guion.csv').next()
+    assert opinion.dificultad_curso.puntos == 4
+    assert opinion.dificultad_tp.puntos == 3
