@@ -1,6 +1,6 @@
 import pytest
 import csv
-from app.interes import Interes
+from modelo.interes import Interes
 
 def test_numerico():
     assert Interes('Muy Interesantes').puntos == 4

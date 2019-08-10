@@ -1,9 +1,9 @@
 import csv
-from app.opinion import Opinion
-from app.interes import Interes
-from app.general import OpinionGeneral
-from app.nivel_clases import NivelClases
-from app.dificultad import Dificultad
+from modelo.opinion import Opinion
+from modelo.interes import Interes
+from modelo.general import OpinionGeneral
+from modelo.nivel_clases import NivelClases
+from modelo.dificultad import Dificultad
 
 class OpinionesParser:
     TEXTO = 'Comentarios Sobre el Curso'

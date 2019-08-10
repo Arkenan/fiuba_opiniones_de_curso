@@ -2,7 +2,7 @@ import pytest
 import csv
 from numpy import NaN
 from numpy import isnan
-from app.dificultad import Dificultad
+from modelo.dificultad import Dificultad
 
 def test_numerico():
     assert Dificultad('Muy Difícil').puntos == 5

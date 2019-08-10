@@ -2,7 +2,7 @@ import pytest
 import csv
 from numpy import NaN
 from numpy import isnan
-from app.nivel_clases import NivelClases
+from modelo.nivel_clases import NivelClases
 
 def test_numerico():
     assert NivelClases('Excelentes').puntos == 5

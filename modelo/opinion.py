@@ -1,7 +1,7 @@
-from app.interes import Interes
-from app.general import OpinionGeneral
-from app.nivel_clases import NivelClases
-from app.dificultad import Dificultad
+from modelo.interes import Interes
+from modelo.general import OpinionGeneral
+from modelo.nivel_clases import NivelClases
+from modelo.dificultad import Dificultad
 
 class Opinion:
     def __init__(self, asignatura = "", curso = "", aprobo = False,

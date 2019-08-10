@@ -1,7 +1,6 @@
 import pytest
 import csv
-from app.interes import Interes
-from app.general import OpinionGeneral
+from modelo.general import OpinionGeneral
 
 def test_numerico():
     assert OpinionGeneral('Excelente').puntos == 5
