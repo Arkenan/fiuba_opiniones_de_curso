@@ -28,3 +28,8 @@ def test_opinion_general():
 def test_actual():
     opinion = OpinionesParser('tests/archivo_guion.csv').next()
     assert opinion.actual
+
+def test_nivel_clases():
+    opinion = OpinionesParser('tests/archivo_guion.csv').next()
+    assert opinion.nivel_teoricas.puntos == 3
+    assert opinion.nivel_practicas.puntos == 5
