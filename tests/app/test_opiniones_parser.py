@@ -53,7 +53,7 @@ def test_texto():
     opinion = parser.next()
     assert opinion.texto == ''
 
-# WIP: No falla leer las opiniones del 2019.
-# def test_2019():
-#     parser = OpinionesParser('data/encuesta-dc-2019-1erC.csv')
-#     [opinion for opinion in parser]
+# No falla leer las opiniones del 2019-1C.
+def test_2019_1C():
+    parser = OpinionesParser('data/encuesta-dc-2019-1erC.csv')
+    [opinion for opinion in parser]
