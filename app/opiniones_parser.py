@@ -1,6 +1,7 @@
 import csv
 from app.opinion import Opinion
 from app.interes import Interes
+from app.general import OpinionGeneral
 
 class OpinionesParser:
     def __init__(self, nombre_archivo):
@@ -11,7 +12,10 @@ class OpinionesParser:
         asignatura, curso = self.get_curso(csv_opinion)
         aprobo = self.aprobo(csv_opinion)
         interes = self.interes(csv_opinion)
-        return Opinion(asignatura = asignatura, curso = curso, aprobo = aprobo, interes = interes)
+        general = self.general(csv_opinion)
+        return Opinion(
+            asignatura = asignatura, curso = curso, aprobo = aprobo,
+            interes = interes, general = general)
 
     def get_curso(self, csv_opinion):
         # TODO check invalida.
@@ -23,3 +27,6 @@ class OpinionesParser:
 
     def interes(self, csv_opinion):
         return Interes(csv_opinion['¿Cómo te Resultaron los Temas de la Materia?'])
+
+    def general(self, csv_opinion):
+        return OpinionGeneral(csv_opinion['Opinión General Sobre el Curso'])
