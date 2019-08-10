@@ -11,6 +11,13 @@ def test_materia_y_curso_separados_guion():
     assert opinion.asignatura == 'Análisis Numérico'
     assert opinion.curso == 'Schwarz'
 
+def test_materia_y_curso_separados_coma():
+    parser = OpinionesParser('tests/app/encuesta.csv')
+    parser.next()
+    opinion = parser.next()
+    assert opinion.asignatura == 'Algoritmos y Programación I'
+    assert opinion.curso == 'Costa'
+
 def test_aprobo():
     opinion = OpinionesParser('tests/app/encuesta.csv').next()
     assert opinion.aprobo
@@ -45,3 +52,8 @@ def test_texto():
     assert 'Creo que' in opinion.texto
     opinion = parser.next()
     assert opinion.texto == ''
+
+# WIP: No falla leer las opiniones del 2019.
+# def test_2019():
+#     parser = OpinionesParser('data/encuesta-dc-2019-1erC.csv')
+#     [opinion for opinion in parser]

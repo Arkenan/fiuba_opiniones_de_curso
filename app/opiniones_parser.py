@@ -4,6 +4,7 @@ from modelo.interes import Interes
 from modelo.general import OpinionGeneral
 from modelo.nivel_clases import NivelClases
 from modelo.dificultad import Dificultad
+from app.excepcion_curso_no_valido import ExcepcionCursoNoValido
 
 class OpinionesParser:
     TEXTO = 'Comentarios Sobre el Curso'
@@ -28,8 +29,14 @@ class OpinionesParser:
 
     def get_curso(self, csv_opinion):
         # TODO check invalida.
-        asignatura, curso = csv_opinion['Elige el curso'].split('-')
-        return asignatura[:-1], curso[1:]
+        curso_csv = csv_opinion['Elige el curso']
+        if '-' in curso_csv:
+            asignatura, curso = curso_csv.split('-')
+            return asignatura[:-1], curso[1:]
+        elif ',' in curso_csv:
+            asignatura, curso = curso_csv.split(',')
+            return asignatura, curso[1:]
+        raise ExcepcionCursoNoValido(csv_opinion['Elige el curso'])
 
     def aprobo(self, csv_opinion):
         return csv_opinion['¿Aprobó la Cursada?'].lower() == 'sí'
@@ -54,3 +61,9 @@ class OpinionesParser:
 
     def dificultad_tp(self, csv_opinion):
         return Dificultad(csv_opinion['Dificultad del TP'])
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        ret = self.next()
