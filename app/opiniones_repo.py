@@ -1,7 +1,11 @@
 from modelo.opinion import Opinion
 from app.opiniones_parser import OpinionesParser
+from app.excepcion_no_hay_datos import ExcepcionNoHayDatos
 
 class OpinionesRepo:
     def opiniones_periodo(self, anio, cuatrimestre):
-        parser = OpinionesParser('data/encuesta-dc-2019-1erC.csv')
-        return [opinion for opinion in parser]
+        try:
+            parser = OpinionesParser('data/encuesta-dc-%d-%dC.csv' % (anio, cuatrimestre))
+            return [opinion for opinion in parser]
+        except FileNotFoundError:
+            raise ExcepcionNoHayDatos(anio, cuatrimestre)
