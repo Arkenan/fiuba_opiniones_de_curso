@@ -55,5 +55,5 @@ def test_texto():
 
 # No falla leer las opiniones del 2019-1C.
 def test_2019_1C():
-    parser = OpinionesParser('data/encuesta-dc-2019-1erC.csv')
+    parser = OpinionesParser('data/encuesta-dc-2019-1C.csv')
     [opinion for opinion in parser]

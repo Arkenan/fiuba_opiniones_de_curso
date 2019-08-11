@@ -66,4 +66,4 @@ class OpinionesParser:
         return self
 
     def __next__(self):
-        ret = self.next()
+        return self.next()
