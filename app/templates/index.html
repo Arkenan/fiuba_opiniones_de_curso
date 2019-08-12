@@ -5,6 +5,8 @@
     <title>FIUBA Opiniones de Cursos</title>
   </head>
   <body>
-    <h1>Bienvenido a FIUBA Opiniones de cursos!</h1>
+    {% for periodo in periodos: %}
+      <li> {{ periodo.anio }} - {{ periodo.cuatrimestre }}° cuatrimestre. </li>
+    {% endfor %}
   </body>
 </html>

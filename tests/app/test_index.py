@@ -1,5 +1,5 @@
-import pytest
 from app.oc import app
+import pytest
 
 @pytest.fixture
 def client():
@@ -7,4 +7,4 @@ def client():
 
 def test_index(client):
     rv = client.get('/')
-    assert 'Bienvenido' in str(rv.data)
+    assert '2019 - 1° cuatrimestre' in rv.data.decode('utf-8')
