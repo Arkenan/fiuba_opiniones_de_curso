@@ -1,4 +1,4 @@
-from app.excepcion_cuatrimestre_no_valido import ExcepcionCuatrimestreNoValido
+from modelo.excepcion_cuatrimestre_no_valido import ExcepcionCuatrimestreNoValido
 
 class Periodo:
     def __init__(self, anio, cuatrimestre):

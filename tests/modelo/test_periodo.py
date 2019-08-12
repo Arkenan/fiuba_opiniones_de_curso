@@ -1,5 +1,5 @@
 from modelo.periodo import Periodo
-from app.excepcion_cuatrimestre_no_valido import ExcepcionCuatrimestreNoValido
+from modelo.excepcion_cuatrimestre_no_valido import ExcepcionCuatrimestreNoValido
 import unittest
 
 class OpinionesRepoTestCase(unittest.TestCase):
