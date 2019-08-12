@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>FIUBA Opiniones de Cursos</title>
-  </head>
-  <body>
+{% block content %}
     {% for periodo in periodos: %}
       <li>{{ periodo.anio }} - {{ periodo.cuatrimestre }}° cuatrimestre.</li>
     {% endfor %}
-  </body>
-</html>
+{% endblock content %}

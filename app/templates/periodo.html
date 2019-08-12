@@ -1,0 +1,7 @@
+{% block content %}
+    {% for opinion in opiniones: %}
+      {% if opinion.texto %}
+        <li>{{ opinion.asignatura }} - {{ opinion.curso }}: {{ opinion.general.puntos }}. "{{ opinion.texto }}"</li>
+      {% endif %}
+    {% endfor %}
+{% endblock content %}
