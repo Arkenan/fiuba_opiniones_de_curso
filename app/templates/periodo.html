@@ -1,7 +1,18 @@
 {% block content %}
-    {% for opinion in opiniones: %}
-      {% if opinion.texto %}
-        <li>{{ opinion.asignatura }} - {{ opinion.curso }}: {{ opinion.general.puntos }}. "{{ opinion.texto }}"</li>
-      {% endif %}
+  {% for asignatura in asignaturas: %}
+    <h1>{{asignatura.nombre}}</h1>
+    {% for curso in asignatura: %}
+      <h2>{{curso.nombre}}</h2>
+      <table>
+        {% for opinion in curso: %}
+          {% if opinion.texto %}
+            <li>
+              Evaluación general: {{opinion.general.puntos}}
+                </br> {{ opinion.texto }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </table>
     {% endfor %}
+  {% endfor %}
 {% endblock content %}

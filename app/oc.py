@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from app.excepcion_no_hay_datos import ExcepcionNoHayDatos
 from app.opiniones_repo import OpinionesRepo
+from app.asignaturas_repo import AsignaturasRepo
 from app.periodo_repo import PeriodoRepo
 from modelo.excepcion_cuatrimestre_no_valido import ExcepcionCuatrimestreNoValido
 from modelo.periodo import Periodo
@@ -17,8 +18,8 @@ def periodo():
     try:
         periodo = Periodo(int(anio), int(cuatrimestre))
         opiniones = OpinionesRepo().opiniones_periodo(periodo)
-        opiniones.sort(key = lambda o: (o.asignatura, o.curso, o.general.puntos))
-        return render_template('periodo.html', opiniones = opiniones)
+        asignaturas = AsignaturasRepo().generar_desde_opiniones(opiniones)
+        return render_template('periodo.html', asignaturas = asignaturas)
     except ExcepcionCuatrimestreNoValido:
         return 500, 'El cuatrimestre ingresado no es válido.'
     except ExcepcionNoHayDatos:
