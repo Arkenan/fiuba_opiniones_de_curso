@@ -1,5 +1,6 @@
+<h1>Cuatrimestres</h1>
 {% block content %}
     {% for periodo in periodos: %}
-      <li>{{ periodo.anio }} - {{ periodo.cuatrimestre }}° cuatrimestre.</li>
+      <li> <a href="{{'/periodo?a=%d&c=%d' %(periodo.anio, periodo.cuatrimestre) }}"> {{ periodo.anio }} - {{ periodo.cuatrimestre }}° cuatrimestre.</a></li>
     {% endfor %}
 {% endblock content %}
