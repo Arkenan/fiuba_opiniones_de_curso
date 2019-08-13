@@ -8,6 +8,7 @@ from app.excepcion_curso_no_valido import ExcepcionCursoNoValido
 
 class OpinionesParser:
     TEXTO = 'Comentarios Sobre el Curso'
+    SEPARADORES = "-,"
 
     def __init__(self, nombre_archivo):
         self.csv = csv.DictReader(open(nombre_archivo), delimiter = ',')
@@ -28,14 +29,11 @@ class OpinionesParser:
             texto = csv_opinion[self.TEXTO])
 
     def get_curso(self, csv_opinion):
-        # TODO check invalida.
         curso_csv = csv_opinion['Elige el curso']
-        if '-' in curso_csv:
-            asignatura, curso = curso_csv.split('-')
-            return asignatura[:-1], curso[1:]
-        elif ',' in curso_csv:
-            asignatura, curso = curso_csv.split(',')
-            return asignatura, curso[1:]
+        for sep in self.SEPARADORES:
+            if sep in curso_csv:
+                asignatura, curso = curso_csv.split(sep)
+                return asignatura.strip(), curso.strip()
         raise ExcepcionCursoNoValido(csv_opinion['Elige el curso'])
 
     def aprobo(self, csv_opinion):

@@ -18,6 +18,11 @@ def test_materia_y_curso_separados_coma():
     assert opinion.asignatura == 'Algoritmos y Programación I'
     assert opinion.curso == 'Costa'
 
+def test_materia_y_curso_guien_sin_espacio():
+    opinion = OpinionesParser('tests/app/encuesta_guion_sin_espacio.csv').next()
+    assert opinion.asignatura == 'Computación'
+    assert opinion.curso == 'Calvo'
+
 def test_aprobo():
     opinion = OpinionesParser('tests/app/encuesta.csv').next()
     assert opinion.aprobo
