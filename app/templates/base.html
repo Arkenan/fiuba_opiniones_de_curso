@@ -1,3 +1,16 @@
 {% extends "bootstrap/base.html" %}
 
-{% block title %}{% block subtitle %}{% endblock subtitle%} - FIUBA Opiniones de Cursos{% endblock title %}
+{% block title %}{% block subtitle %}{% endblock subtitle %} - FIUBA Opiniones de Cursos{% endblock title %}
+
+{% block content %}
+  <div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="container">
+      <h1>{{self.subtitle()}}</h1>
+      <p>FIUBA Opiniones de Cursos</p>
+    </div>
+  </div>
+
+  <div class="container">
+    {% block subcontent %}{% endblock subcontent %}
+  </div>
+{% endblock content %}

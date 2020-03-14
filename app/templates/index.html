@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block subtitle %}Computación{% endblock subtitle %}
 
-{% block content %}
+{% block subcontent %}
   <h1>Cuatrimestres</h1>
   {% for periodo in periodos: %}
     <li> <a href="{{'/periodo?a=%d&c=%d' %(periodo.anio, periodo.cuatrimestre) }}"> {{ periodo.anio }} - {{ periodo.cuatrimestre }}° cuatrimestre.</a></li>
   {% endfor %}
-{% endblock content %}
+{% endblock subcontent %}
