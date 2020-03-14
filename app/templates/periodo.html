@@ -1,19 +1,32 @@
 {% extends "base.html" %}
-{% block content %}
+
+{% block subtitle %}{{ periodo }}{% endblock subtitle %}
+
+{% block subcontent %}
   {% for asignatura in asignaturas: %}
-    <h1>{{asignatura.nombre}}</h1>
+    </br><h3>{{asignatura.nombre}}</h1>
     {% for curso in asignatura: %}
-      <h2>{{curso.nombre}}</h2>
-      <table>
-        {% for opinion in curso: %}
-          {% if opinion.texto %}
-            <li>
-              Evaluación general: {{opinion.general.puntos}}
-                </br> {{ opinion.texto }}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </table>
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#{{asignatura.nombre+curso.nombre}}" aria-expanded="true" aria-controls="collapseOne">
+              {{curso.nombre}}
+            </button>
+          </h5>
+        </div>
+        <div id="{{asignatura.nombre+curso.nombre}}" class="collapse" aria-labelledby="{{asignatura.nombre+curso.nombre}}">
+          <ul class="list-group list-group-flush">
+            {% for opinion in curso: %}
+              {% if opinion.texto %}
+                <li class="list-group-item">
+                  <small> Evaluación general: {{opinion.general.puntos}} </small></br>
+                  {{ opinion.texto }} </br>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
     {% endfor %}
   {% endfor %}
-{% endblock content %}
+{% endblock subcontent %}

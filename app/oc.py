@@ -5,8 +5,10 @@ from app.asignaturas_repo import AsignaturasRepo
 from app.periodo_repo import PeriodoRepo
 from modelo.excepcion_cuatrimestre_no_valido import ExcepcionCuatrimestreNoValido
 from modelo.periodo import Periodo
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+Bootstrap(app)
 
 @app.route('/')
 def index():
@@ -19,7 +21,8 @@ def periodo():
         periodo = Periodo(int(anio), int(cuatrimestre))
         opiniones = OpinionesRepo().opiniones_periodo(periodo)
         asignaturas = AsignaturasRepo().generar_desde_opiniones(opiniones)
-        return render_template('periodo.html', asignaturas = asignaturas)
+        return render_template('periodo.html', asignaturas = asignaturas,
+            periodo = periodo)
     except ExcepcionCuatrimestreNoValido:
         return 500, 'El cuatrimestre ingresado no es válido.'
     except ExcepcionNoHayDatos:

@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>FIUBA Opiniones de Cursos</title>
-  </head>
-  <body>
-    {% block content %}{% endblock content %}
-  </body>
-</html>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}{% block subtitle %}{% endblock subtitle %} - FIUBA Opiniones de Cursos{% endblock title %}
+
+{% block navbar %}
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="{{url_for('index')}}">FIUBA Opiniones de Cursos</a>
+  </nav>
+{% endblock navbar %}
+
+{% block content %}
+  <div class="jumbotron jumbotron-fluid bg-dark text-white">
+    <div class="container">
+      <h1>{{self.subtitle()}}</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    {% block subcontent %}{% endblock subcontent %}
+  </div>
+{% endblock content %}
