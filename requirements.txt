@@ -1,4 +1,4 @@
 pytest
 flask
 numpy
-flask-bootstrap
+flask-bootstrap4

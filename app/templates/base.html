@@ -2,11 +2,16 @@
 
 {% block title %}{% block subtitle %}{% endblock subtitle %} - FIUBA Opiniones de Cursos{% endblock title %}
 
+{% block navbar %}
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="{{url_for('index')}}">FIUBA Opiniones de Cursos</a>
+  </nav>
+{% endblock navbar %}
+
 {% block content %}
   <div class="jumbotron jumbotron-fluid bg-dark text-white">
     <div class="container">
       <h1>{{self.subtitle()}}</h1>
-      <p>FIUBA Opiniones de Cursos</p>
     </div>
   </div>
 
