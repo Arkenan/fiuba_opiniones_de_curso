@@ -5,8 +5,10 @@ from app.asignaturas_repo import AsignaturasRepo
 from app.periodo_repo import PeriodoRepo
 from modelo.excepcion_cuatrimestre_no_valido import ExcepcionCuatrimestreNoValido
 from modelo.periodo import Periodo
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+Bootstrap(app)
 
 @app.route('/')
 def index():

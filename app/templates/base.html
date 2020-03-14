@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}{% endblock title %} - FIUBA Opiniones de Cursos</title>
-  </head>
-  <body>
-    {% block content %}{% endblock content %}
-  </body>
-</html>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}{% block subtitle %}{% endblock subtitle%} - FIUBA Opiniones de Cursos{% endblock title %}
