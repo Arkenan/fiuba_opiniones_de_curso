@@ -19,7 +19,8 @@ def periodo():
         periodo = Periodo(int(anio), int(cuatrimestre))
         opiniones = OpinionesRepo().opiniones_periodo(periodo)
         asignaturas = AsignaturasRepo().generar_desde_opiniones(opiniones)
-        return render_template('periodo.html', asignaturas = asignaturas)
+        return render_template('periodo.html', asignaturas = asignaturas,
+            periodo = periodo)
     except ExcepcionCuatrimestreNoValido:
         return 500, 'El cuatrimestre ingresado no es válido.'
     except ExcepcionNoHayDatos:

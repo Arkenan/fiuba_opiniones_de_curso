@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+
+{% block title %}{{ periodo }}{% endblock title %}
+
 {% block content %}
   {% for asignatura in asignaturas: %}
     <h1>{{asignatura.nombre}}</h1>

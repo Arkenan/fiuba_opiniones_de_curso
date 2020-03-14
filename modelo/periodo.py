@@ -6,3 +6,9 @@ class Periodo:
             raise ExcepcionCuatrimestreNoValido(cuatrimestre)
         self.anio = anio
         self.cuatrimestre = cuatrimestre
+
+    def __str__(self):
+        return '%d - %d%s Cuatrimestre' % (self.anio, self.cuatrimestre, self._sufijo())
+
+    def _sufijo(self):
+        return 'do' if self.cuatrimestre == 2 else 'er'
