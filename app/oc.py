@@ -10,23 +10,25 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 Bootstrap(app)
 
-@app.route('/')
-def index():
-    return render_template('index.html', periodos = PeriodoRepo().get_all())
 
-@app.route('/periodo')
+@app.route("/")
+def index():
+    return render_template("index.html", periodos=PeriodoRepo().get_all())
+
+
+@app.route("/periodo")
 def periodo():
-    anio, cuatrimestre = request.args.get('a'), request.args.get('c')
+    anio, cuatrimestre = request.args.get("a"), request.args.get("c")
     try:
         periodo = Periodo(int(anio), int(cuatrimestre))
         opiniones = OpinionesRepo().opiniones_periodo(periodo)
         asignaturas = AsignaturasRepo().generar_desde_opiniones(opiniones)
-        return render_template('periodo.html', asignaturas = asignaturas,
-            periodo = periodo)
+        return render_template("periodo.html", asignaturas=asignaturas, periodo=periodo)
     except ExcepcionCuatrimestreNoValido:
-        return 500, 'El cuatrimestre ingresado no es válido.'
+        return 500, "El cuatrimestre ingresado no es válido."
     except ExcepcionNoHayDatos:
-        return 500, 'No hay datos del período pedido.'
+        return 500, "No hay datos del período pedido."
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run()
