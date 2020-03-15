@@ -1,8 +1,10 @@
-# fiuba_opiniones_de_curso
+# FIUBA Opiniones de Curso
 
 ![badge](https://travis-ci.org/Arkenan/fiuba_opiniones_de_curso.svg?branch=master)
 
 Sistema web para visualizar cómodamente las opiniones sobre cursos de la Facultad de Ingeniería de la UBA. Por el momento, utilizando como base las encuestas del Departamento de Computación.
+
+El sitio desplegado se encuentra en [https://fiuba-opiniones-de-curso.herokuapp.com/](https://fiuba-opiniones-de-curso.herokuapp.com/)
 
 ## Prerrequisitos
 
@@ -26,19 +28,19 @@ chmod +x run
 chmod +x test
 ```
 
-## Levantar el servidor
+## Ejecutar la aplicación localmente
 
-Para levantar el servidor que expone la página web de opiniones de curso debe ejecutarse en bash:
+Ejecutar en bash:
 
 ```bash
 ./run
 ```
 
-desde la raíz del proyecto. Este script exporta la raíz al `PYTHONPATH` y luego levanta el server de flask.
+desde la raíz del proyecto. Este script levanta un servidor gunicorn con el path de nuestra aplicación correctamente configurado.
 
-Para acceder al servidor, debe entrarse en el navegador a `http://localhost:5000`.
+Para acceder a la aplicación, debe entrarse en el navegador a `http://localhost:8000`.
 
-## Ejecutar tests locales:
+## Ejecutar tests locales
 
 Ejecutar el script
 
@@ -47,3 +49,7 @@ Ejecutar el script
 ```
 
 que llama a `pytest` modificando el `PYTHONPATH` para incluir a la raíz del proyecto.
+
+## Extras
+
+El código está autoformateado usando [Black](https://github.com/psf/black) y sus estándares.
