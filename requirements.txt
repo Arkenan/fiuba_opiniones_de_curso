@@ -2,3 +2,4 @@ pytest
 flask
 numpy
 flask-bootstrap4
+gunicorn
