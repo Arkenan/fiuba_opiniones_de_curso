@@ -1,5 +1,6 @@
 from app.periodo_repo import PeriodoRepo
 
+
 def test_presente_2019_1C():
     periodos = PeriodoRepo().get_all()
     encontrado = False

@@ -3,15 +3,22 @@ from modelo.general import OpinionGeneral
 from modelo.nivel_clases import NivelClases
 from modelo.dificultad import Dificultad
 
+
 class Opinion:
-    def __init__(self, asignatura = "", curso = "", aprobo = False,
-                 interes = Interes('Interesantes'),
-                 general = OpinionGeneral('Bueno'), actual = False,
-                 nivel_teoricas = NivelClases('Buenas'),
-                 nivel_practicas = NivelClases('Buenas'),
-                 dificultad_curso = Dificultad('Normal'),
-                 dificultad_tp = Dificultad('Normal'),
-                 texto = ""):
+    def __init__(
+        self,
+        asignatura="",
+        curso="",
+        aprobo=False,
+        interes=Interes("Interesantes"),
+        general=OpinionGeneral("Bueno"),
+        actual=False,
+        nivel_teoricas=NivelClases("Buenas"),
+        nivel_practicas=NivelClases("Buenas"),
+        dificultad_curso=Dificultad("Normal"),
+        dificultad_tp=Dificultad("Normal"),
+        texto="",
+    ):
         self.asignatura = asignatura
         self.curso = curso
         self.aprobo = aprobo
