@@ -11,6 +11,8 @@ from app.excepcion_curso_no_valido import ExcepcionCursoNoValido
 class OpinionesParser:
     TEXTO = "Comentarios Sobre el Curso"
 
+    FORMATOS_CURSO = [r"(?P<asignatura>.*)[,-](?P<curso>.*)"]
+
     def __init__(self, nombre_archivo):
         self.csv = csv.DictReader(open(nombre_archivo), delimiter=",")
 
@@ -34,11 +36,13 @@ class OpinionesParser:
     def get_curso(self, csv_opinion):
         curso_str = csv_opinion["Curso"]
 
-        rem = re.match(r"(?P<asignatura>.*)[,-](?P<curso>.*)", curso_str)
-        if not rem:
-            raise ExcepcionCursoNoValido(curso_str)
+        for formato in self.FORMATOS_CURSO:
+            rem = re.match(formato, curso_str)
 
-        return rem.group("asignatura").strip(), rem.group("curso").strip()
+            if rem:
+                return rem.group("asignatura").strip(), rem.group("curso").strip()
+
+        raise ExcepcionCursoNoValido(curso_str)
 
     def aprobo(self, csv_opinion):
         return csv_opinion["¿Aprobó la Cursada?"].lower() == "sí"
