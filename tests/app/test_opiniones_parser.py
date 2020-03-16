@@ -83,7 +83,6 @@ def test_formato_doble_codigo_materia_curso_docente():
 
 
 # No falla leer las opiniones del 2019-2C.
-# def test_2019_2C():
-#     parser = OpinionesParser("data/encuesta-dc-2019-2C.csv")
-#     [opinion for opinion in parser]
-#
+def test_2019_2C():
+    parser = OpinionesParser("data/encuesta-dc-2019-2C.csv")
+    [opinion for opinion in parser]
