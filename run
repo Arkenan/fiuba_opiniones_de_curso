@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-PYTHONPATH=$PYTHONPATH:$(pwd) python3 app/oc.py
+gunicorn --pythonpath ./app oc:app
