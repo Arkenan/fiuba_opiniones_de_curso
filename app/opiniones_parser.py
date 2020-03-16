@@ -10,8 +10,11 @@ from app.excepcion_curso_no_valido import ExcepcionCursoNoValido
 
 class OpinionesParser:
     TEXTO = "Comentarios Sobre el Curso"
-
-    FORMATOS_CURSO = [r"(?P<asignatura>.*)[,-](?P<curso>.*)"]
+    CODIGO = r"[0-9]{2}\.[0-9]{2}"
+    FORMATOS_CURSO = [
+        r"%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % (CODIGO, CODIGO),
+        r"(?P<asignatura>.*)[,-](?P<curso>.*)",
+    ]
 
     def __init__(self, nombre_archivo):
         self.csv = csv.DictReader(open(nombre_archivo), delimiter=",")
