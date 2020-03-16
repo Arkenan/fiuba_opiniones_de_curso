@@ -4,7 +4,7 @@
 
 {% block subcontent %}
   {% for asignatura in asignaturas: %}
-    </br><h3>{{asignatura.nombre}}</h1>
+    <br><h3>{{asignatura.nombre}}</h3>
     {% for curso in asignatura: %}
       <div class="card">
         <div class="card-header" id="headingOne">
@@ -19,8 +19,10 @@
             {% for opinion in curso: %}
               {% if opinion.texto %}
                 <li class="list-group-item">
-                  <small> Evaluación general: {{opinion.general.puntos}} </small></br>
-                  {{ opinion.texto }} </br>
+                  <small> Evaluación general: {{opinion.general.puntos}} </small><br>
+                  {% for parrafo in opinion.texto.split('\n') %}
+                    <p>{{ parrafo }}</p>
+                  {% endfor %}
                 </li>
               {% endif %}
             {% endfor %}
