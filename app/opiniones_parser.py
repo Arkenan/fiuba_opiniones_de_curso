@@ -34,11 +34,11 @@ class OpinionesParser:
     def get_curso(self, csv_opinion):
         curso_str = csv_opinion["Curso"]
 
-        rem = re.match(r"(.*)[,-](.*)", curso_str)
+        rem = re.match(r"(?P<asignatura>.*)[,-](?P<curso>.*)", curso_str)
         if not rem:
             raise ExcepcionCursoNoValido(curso_str)
 
-        return rem.group(1).strip(), rem.group(2).strip()
+        return rem.group("asignatura").strip(), rem.group("curso").strip()
 
     def aprobo(self, csv_opinion):
         return csv_opinion["¿Aprobó la Cursada?"].lower() == "sí"
