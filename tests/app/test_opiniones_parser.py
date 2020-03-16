@@ -77,9 +77,11 @@ def test_2019_1C():
 
 
 # def test_formato_doble_codigo_materia_curso_docente():
-#     parser = OpinionesParser("test/app/formatos.csv")
-#     opinion = parser.next()
-#     "75.01-95.01-Computación - 1 - Strobino"
+#     opinion = OpinionesParser("tests/app/formatos.csv").next()
+#     assert opinion.asignatura == "Computación"
+#     assert opinion.curso == "Strobino"
+# "75.01-95.01-Computación - 1 - Strobino"
+
 
 # No falla leer las opiniones del 2019-2C.
 # def test_2019_2C():

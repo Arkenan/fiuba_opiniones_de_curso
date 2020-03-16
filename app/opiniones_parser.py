@@ -1,4 +1,5 @@
 import csv
+import re
 from modelo.opinion import Opinion
 from modelo.interes import Interes
 from modelo.general import OpinionGeneral
@@ -9,7 +10,6 @@ from app.excepcion_curso_no_valido import ExcepcionCursoNoValido
 
 class OpinionesParser:
     TEXTO = "Comentarios Sobre el Curso"
-    SEPARADORES = "-,"
 
     def __init__(self, nombre_archivo):
         self.csv = csv.DictReader(open(nombre_archivo), delimiter=",")
@@ -32,12 +32,13 @@ class OpinionesParser:
         )
 
     def get_curso(self, csv_opinion):
-        curso_csv = csv_opinion["Curso"]
-        for sep in self.SEPARADORES:
-            if sep in curso_csv:
-                asignatura, curso = curso_csv.split(sep)
-                return asignatura.strip(), curso.strip()
-        raise ExcepcionCursoNoValido(csv_opinion["Elige el curso"])
+        curso_str = csv_opinion["Curso"]
+
+        rem = re.match(r"(.*)[,-](.*)", curso_str)
+        if not rem:
+            raise ExcepcionCursoNoValido(curso_str)
+
+        return rem.group(1).strip(), rem.group(2).strip()
 
     def aprobo(self, csv_opinion):
         return csv_opinion["¿Aprobó la Cursada?"].lower() == "sí"
