@@ -112,6 +112,15 @@ def test_formato_codigo_triple_materia_curso_docente():
     assert opinion.curso == "Beiro"
 
 
+def test_formato_codigo_triple_materia_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 5)
+    assert (
+        opinion.asignatura
+        == "Teoría de la Programación/Teoría del Lenguaje/Teoria de Leng. de Prog."
+    )
+    assert opinion.curso == "Ferrigno"
+
+
 # No falla leer las opiniones del 2019-2C.
 def test_2019_2C():
     parser = OpinionesParser("data/encuesta-dc-2019-2C.csv")
