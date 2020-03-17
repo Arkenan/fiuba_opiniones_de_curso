@@ -13,6 +13,7 @@ class OpinionesParser:
     CODIGO = r"[0-9]{2}\.[0-9]{2}"
     FORMATOS_CURSO = [
         r"%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % (CODIGO, CODIGO),
+        r"%s[,-]%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % (CODIGO, CODIGO),
         r"(?P<asignatura>.*)[,-](?P<curso>.*)",
     ]
 

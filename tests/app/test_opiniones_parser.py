@@ -3,6 +3,12 @@ import csv
 from app.opiniones_parser import OpinionesParser
 
 
+def get_i(opiniones, i):
+    for j in range(i):
+        opiniones.next()
+    return opiniones.next()
+
+
 def test_should_fail_if_file_not_found():
     with pytest.raises(FileNotFoundError):
         parser = OpinionesParser("archivo_falso.csv")
@@ -80,6 +86,12 @@ def test_formato_doble_codigo_materia_curso_docente():
     opinion = OpinionesParser("tests/app/formatos.csv").next()
     assert opinion.asignatura == "Computación"
     assert opinion.curso == "Strobino"
+
+
+def test_formato_doble_codigo_materia_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 1)
+    assert opinion.asignatura == "Algoritmos y Programación II (Electrónica)"
+    assert opinion.curso == "Calvo"
 
 
 # No falla leer las opiniones del 2019-2C.
