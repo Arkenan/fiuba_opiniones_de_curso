@@ -15,6 +15,7 @@ class OpinionesParser:
         r"%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % (CODIGO, CODIGO),
         r"%s[,-]%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % (CODIGO, CODIGO),
         r"%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % CODIGO,
+        r"%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % CODIGO,
         r"(?P<asignatura>.*)[,-](?P<curso>.*)",
     ]
 
