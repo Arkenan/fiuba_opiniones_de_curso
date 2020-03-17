@@ -3,3 +3,4 @@ flask
 numpy
 flask-bootstrap4
 gunicorn
+unidecode

@@ -1,4 +1,5 @@
 import csv
+import re
 from modelo.opinion import Opinion
 from modelo.interes import Interes
 from modelo.general import OpinionGeneral
@@ -9,7 +10,20 @@ from app.excepcion_curso_no_valido import ExcepcionCursoNoValido
 
 class OpinionesParser:
     TEXTO = "Comentarios Sobre el Curso"
-    SEPARADORES = "-,"
+    CODIGO = r"[0-9]{2}\.[0-9]{2}"
+    FORMATOS_CURSO = [
+        r"%s[,-]%s[,-]%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)"
+        % (CODIGO, CODIGO, CODIGO, CODIGO),
+        r"%s[,-]%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)"
+        % (CODIGO, CODIGO, CODIGO),
+        r"%s[,-]%s[,-]%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)"
+        % (CODIGO, CODIGO, CODIGO),
+        r"%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % (CODIGO, CODIGO),
+        r"%s[,-]%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % (CODIGO, CODIGO),
+        r"%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % CODIGO,
+        r"%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % CODIGO,
+        r"(?P<asignatura>.*)[,-](?P<curso>.*)",
+    ]
 
     def __init__(self, nombre_archivo):
         self.csv = csv.DictReader(open(nombre_archivo), delimiter=",")
@@ -32,12 +46,15 @@ class OpinionesParser:
         )
 
     def get_curso(self, csv_opinion):
-        curso_csv = csv_opinion["Elige el curso"]
-        for sep in self.SEPARADORES:
-            if sep in curso_csv:
-                asignatura, curso = curso_csv.split(sep)
-                return asignatura.strip(), curso.strip()
-        raise ExcepcionCursoNoValido(csv_opinion["Elige el curso"])
+        curso_str = csv_opinion["Curso"]
+
+        for formato in self.FORMATOS_CURSO:
+            rem = re.match(formato, curso_str)
+
+            if rem:
+                return rem.group("asignatura").strip(), rem.group("curso").strip()
+
+        raise ExcepcionCursoNoValido(curso_str)
 
     def aprobo(self, csv_opinion):
         return csv_opinion["¿Aprobó la Cursada?"].lower() == "sí"

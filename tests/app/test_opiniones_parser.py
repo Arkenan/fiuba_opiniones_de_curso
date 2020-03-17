@@ -3,6 +3,12 @@ import csv
 from app.opiniones_parser import OpinionesParser
 
 
+def get_i(opiniones, i):
+    for j in range(i):
+        opiniones.next()
+    return opiniones.next()
+
+
 def test_should_fail_if_file_not_found():
     with pytest.raises(FileNotFoundError):
         parser = OpinionesParser("archivo_falso.csv")
@@ -73,4 +79,55 @@ def test_texto():
 # No falla leer las opiniones del 2019-1C.
 def test_2019_1C():
     parser = OpinionesParser("data/encuesta-dc-2019-1C.csv")
+    [opinion for opinion in parser]
+
+
+def test_formato_doble_codigo_materia_curso_docente():
+    opinion = OpinionesParser("tests/app/formatos.csv").next()
+    assert opinion.asignatura == "Computación"
+    assert opinion.curso == "Strobino"
+
+
+def test_formato_doble_codigo_materia_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 1)
+    assert opinion.asignatura == "Algoritmos y Programación II (Electrónica)"
+    assert opinion.curso == "Calvo"
+
+
+def test_formato_codigo_materia_curso_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 2)
+    assert opinion.asignatura == "Análisis de la Información"
+    assert opinion.curso == "Gonzalez"
+
+
+def test_formato_codigo_materia_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 3)
+    assert opinion.asignatura == "Técnicas de Diseño"
+    assert opinion.curso == "Pantaleo"
+
+
+def test_formato_codigo_triple_materia_curso_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 4)
+    assert opinion.asignatura == "Base de Datos"
+    assert opinion.curso == "Beiro"
+
+
+def test_formato_codigo_triple_materia_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 5)
+    assert (
+        opinion.asignatura
+        == "Teoría de la Programación/Teoría del Lenguaje/Teoria de Leng. de Prog."
+    )
+    assert opinion.curso == "Ferrigno"
+
+
+def test_formato_codigo_cuadruple_materia_curso_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 6)
+    assert opinion.asignatura == "Análisis Numérico I/Métodos Matemáticos y Numéricos"
+    assert opinion.curso == "Schwarz"
+
+
+# No falla leer las opiniones del 2019-2C.
+def test_2019_2C():
+    parser = OpinionesParser("data/encuesta-dc-2019-2C.csv")
     [opinion for opinion in parser]

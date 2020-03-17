@@ -1,16 +1,17 @@
 from numpy import NaN
+from unidecode import unidecode
 
 
 class Dificultad:
     MAP = {
-        "muy difícil": 5,
-        "difícil": 4,
+        "muy dificil": 5,
+        "dificil": 4,
         "normal": 3,
-        "fácil": 2,
-        "muy fácil": 1,
+        "facil": 2,
+        "muy facil": 1,
         "no hay tp": NaN,
     }
 
-    def __init__(self, texto_interes):
-        self.texto = texto_interes
-        self.puntos = self.MAP[texto_interes.lower()]
+    def __init__(self, texto_dificultad):
+        self.texto = texto_dificultad
+        self.puntos = self.MAP[unidecode(texto_dificultad.lower())]
