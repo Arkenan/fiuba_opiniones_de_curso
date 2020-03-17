@@ -14,6 +14,7 @@ class OpinionesParser:
     FORMATOS_CURSO = [
         r"%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % (CODIGO, CODIGO),
         r"%s[,-]%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % (CODIGO, CODIGO),
+        r"%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % CODIGO,
         r"(?P<asignatura>.*)[,-](?P<curso>.*)",
     ]
 
