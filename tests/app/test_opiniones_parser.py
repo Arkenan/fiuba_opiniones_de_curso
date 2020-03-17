@@ -127,6 +127,12 @@ def test_formato_codigo_cuadruple_materia_curso_docente():
     assert opinion.curso == "Schwarz"
 
 
+def test_con_y_en_los_numeros_de_curso():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 7)
+    assert opinion.asignatura == "Computación"
+    assert opinion.curso == "Jimenez Rey"
+
+
 # No falla leer las opiniones del 2019-2C.
 def test_2019_2C():
     parser = OpinionesParser("data/encuesta-dc-2019-2C.csv")

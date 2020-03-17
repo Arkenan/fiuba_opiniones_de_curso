@@ -11,17 +11,13 @@ from app.excepcion_curso_no_valido import ExcepcionCursoNoValido
 class OpinionesParser:
     TEXTO = "Comentarios Sobre el Curso"
     CODIGO = r"[0-9]{2}\.[0-9]{2}"
+    ASIGNATURA = r"[A-z À-ú()/\.]*"
+    DOCENTES = "[A-z À-ú]*"
     FORMATOS_CURSO = [
-        r"%s[,-]%s[,-]%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)"
-        % (CODIGO, CODIGO, CODIGO, CODIGO),
-        r"%s[,-]%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)"
-        % (CODIGO, CODIGO, CODIGO),
-        r"%s[,-]%s[,-]%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)"
-        % (CODIGO, CODIGO, CODIGO),
-        r"%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % (CODIGO, CODIGO),
-        r"%s[,-]%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % (CODIGO, CODIGO),
-        r"%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % CODIGO,
-        r"%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % CODIGO,
+        r"(%s[,-]){1,4}(?P<asignatura>%s)[,-][ y0-9]*[,-](?P<curso>%s)"
+        % (CODIGO, ASIGNATURA, DOCENTES),
+        r"(%s[,-]){1,4}(?P<asignatura>%s)[,-](?P<curso>%s)"
+        % (CODIGO, ASIGNATURA, DOCENTES),
         r"(?P<asignatura>.*)[,-](?P<curso>.*)",
     ]
 
