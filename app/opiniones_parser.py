@@ -12,6 +12,8 @@ class OpinionesParser:
     TEXTO = "Comentarios Sobre el Curso"
     CODIGO = r"[0-9]{2}\.[0-9]{2}"
     FORMATOS_CURSO = [
+        r"%s[,-]%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)"
+        % (CODIGO, CODIGO, CODIGO),
         r"%s[,-]%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % (CODIGO, CODIGO),
         r"%s[,-]%s[,-](?P<asignatura>.*)[,-](?P<curso>.*)" % (CODIGO, CODIGO),
         r"%s[,-](?P<asignatura>.*)[,-].*[,-](?P<curso>.*)" % CODIGO,

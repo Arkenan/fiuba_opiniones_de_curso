@@ -106,6 +106,12 @@ def test_formato_codigo_materia_docente():
     assert opinion.curso == "Pantaleo"
 
 
+def test_formato_codigo_triple_materia_curso_docente():
+    opinion = get_i(OpinionesParser("tests/app/formatos.csv"), 4)
+    assert opinion.asignatura == "Base de Datos"
+    assert opinion.curso == "Beiro"
+
+
 # No falla leer las opiniones del 2019-2C.
 def test_2019_2C():
     parser = OpinionesParser("data/encuesta-dc-2019-2C.csv")
