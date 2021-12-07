@@ -9,7 +9,7 @@ class PeriodoRepo:
     def get_all(self):
         return [
             self.periodo(file_name)
-            for file_name in os.listdir("data")
+            for file_name in sorted(os.listdir("data"))
             if self.archivo_valido(file_name)
         ]
 

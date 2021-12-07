@@ -138,7 +138,17 @@ def test_2019_2C():
     parser = OpinionesParser("data/encuesta-dc-2019-2C.csv")
     [opinion for opinion in parser]
 
-# No falla leer las opiniones del 2019-2C.
+# No falla leer las opiniones del 2020-1C.
 def test_2020_1C():
     parser = OpinionesParser("data/encuesta-dc-2020-1C.csv")
+    [opinion for opinion in parser]
+
+# No falla leer las opiniones del 2020-2C.
+def test_2020_2C():
+    parser = OpinionesParser("data/encuesta-dc-2020-2C.csv")
+    [opinion for opinion in parser]
+
+# No falla leer las opiniones del 2021-1C.
+def test_2021_1C():
+    parser = OpinionesParser("data/encuesta-dc-2021-1C.csv")
     [opinion for opinion in parser]
